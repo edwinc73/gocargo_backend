@@ -10,8 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_17_075204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "return_date"
+    t.integer "total_price"
+    t.boolean "completed"
+    t.boolean "approved"
+    t.float "user_rating"
+    t.float "car_rating"
+    t.bigint "user_id", null: false
+    t.bigint "car_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_bookings_on_car_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string "car_model"
+    t.integer "mileage"
+    t.string "car_image"
+    t.string "city"
+    t.float "price_per_day"
+    t.float "rating"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "favourite_cars", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "car_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_favourite_cars_on_car_id"
+    t.index ["user_id"], name: "index_favourite_cars_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "usersname"
+    t.string "email"
+    t.float "rating"
+    t.string "avatar_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bookings", "cars"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "cars", "users"
+  add_foreign_key "favourite_cars", "cars"
+  add_foreign_key "favourite_cars", "users"
 end
