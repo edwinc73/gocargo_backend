@@ -4,9 +4,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get "users/profile", to: "users#profile"
-  resources :cars, only: %i[show create index] do
-    post "bookings", to: "bookings#create"
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      get "users/profile", to: "users#profile"
+      resources :cars, only: %i[show create index] do
+        post "bookings", to: "bookings#create"
+      end
+      resources :bookings, only: %i[show update]
+    end
   end
-  resources :bookings, only: %i[show update]
 end
