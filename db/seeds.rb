@@ -35,7 +35,7 @@ end
   user_id = rand(1..30)
   car_id = rand(1..100)
   price_per_day = Car.find(car_id).price_per_day
-  total_price = ((return_date - start_date)/1.day).ceil * price_per_day
+  total_price = ((return_date - start_date) / 1.day).ceil * price_per_day
   Booking.create!(
     start_date: start_date,
     return_date: return_date,
