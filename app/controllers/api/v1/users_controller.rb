@@ -13,6 +13,8 @@ class Api::V1::UsersController < Api::V1::BaseController
       booking.car = Car.find(booking.car_id)
       booking
     end
+
+    @cars = @user.cars
   end
 end
 
