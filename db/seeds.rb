@@ -1,3 +1,4 @@
+
 30.times do
   username = Faker::Internet.username(specifier: 5..18)
   email = Faker::Internet.email
