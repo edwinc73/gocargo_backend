@@ -1,6 +1,8 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  def index
-    @users = User.all
-    render json: @users #Just for testing
+  def profile
+    @user = User.find(1)
+    #find favourite cars
+    #see my profile
+    # in profile we can see the bookings list, my cars and
   end
 end
