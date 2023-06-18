@@ -17,4 +17,9 @@ class Api::V1::BaseController < ActionController::Base
     end
     render json: response, status: :internal_server_error
   end
+
+  def render_error
+    render json: { errors: @story.errors.full_messages },
+      status: :unprocessable_entity
+  end
 end
