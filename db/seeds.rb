@@ -46,6 +46,6 @@ end
     total_price: total_price,
     completed: false,
     approved: false,
-    canceled: false
+    cancelled: false
   )
 end
