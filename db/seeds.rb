@@ -37,7 +37,8 @@ end
   start_date = Faker::Time.between(from: DateTime.now, to: '2023-07-06')
   return_date = Faker::Time.between(from: start_date, to: '2023-07-06')
   price_per_day = Car.all.sample.price_per_day
-  total_price = ((return_date - start_date) / 1.day).ceil * price_per_day
+  days = ((return_date - start_date) / 1.day).ceil
+  total_price = days * price_per_day
   Booking.create!(
     start_date: start_date,
     return_date: return_date,
@@ -46,6 +47,7 @@ end
     total_price: total_price,
     completed: false,
     approved: false,
-    cancelled: false
+    cancelled: false,
+    days: days
   )
 end
