@@ -45,6 +45,7 @@ end
     car: Car.all.sample,
     total_price: total_price,
     completed: false,
-    approved: false
+    approved: false,
+    canceled: false
   )
 end
