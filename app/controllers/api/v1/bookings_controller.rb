@@ -28,7 +28,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
   private
 
   def booking_params
-  params.require(@booking).permit(:approved, :completed, :total_price, :total_price, :user_rating, :car_rating)
+  params.require(@booking).permit(:approved, :completed, :start_date, :return_date, :user_rating, :car_rating)
   end
 
   def set_booking

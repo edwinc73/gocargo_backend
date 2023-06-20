@@ -5,7 +5,7 @@ class Api::V1::CarsController < Api::V1::BaseController
 
   def show
     @car = Car.find(params[:id])
-    @owner = User.find(@car.user.id)
+    @owner = User.find(@car.user_id)
   end
 
   def create
