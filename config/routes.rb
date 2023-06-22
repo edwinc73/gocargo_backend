@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :cars, only: %i[show create index] do
         post "bookings", to: "bookings#create"
       end
-      resources :bookings, only: %i[show update]
+      resources :bookings, only: %i[index show update]
     end
   end
 end
