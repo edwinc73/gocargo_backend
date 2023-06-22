@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_121930) do
     t.bigint "car_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "cancelled"
+    t.boolean "canceled"
     t.integer "days"
     t.index ["car_id"], name: "index_bookings_on_car_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_121930) do
 
   create_table "cars", force: :cascade do |t|
     t.string "car_model"
+    t.integer "mileage"
     t.string "car_image"
     t.string "city"
     t.float "price_per_day"
@@ -69,7 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_121930) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "mileage"
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
