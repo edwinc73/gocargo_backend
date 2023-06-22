@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       post 'login', to: 'user_sessions#login', as: :login
       get "users/profile", to: "users#profile"
       resources :cars, only: %i[show create index] do
-        post "bookings", to: "bookings#create"
+        member do
+          post "bookings", to: "bookings#create"
+        end
       end
       resources :bookings, only: %i[index show update]
     end
