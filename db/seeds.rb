@@ -6,14 +6,16 @@ User.destroy_all
 30.times do
   username = Faker::Internet.username(specifier: 5..18)
   email = Faker::Internet.email
+  rating = rand(3.0..5.0).round(1)
   avatar = ['dogs', 'sports', 'cars'].sample
   avatar_image = Faker::LoremFlickr.image(size: "100x100", search_terms: [avatar])
-  User.create!(username: username, email: email, avatar_image: avatar_image)
+  User.create!(username: username, email: email, avatar_image: avatar_image, rating: rating)
 end
 
 100.times do
   car_brand = Faker::Vehicle.make
   model = Faker::Vehicle.model(make_of_model: car_brand)
+  rating = rand(3.0..5.0).round(1)
   car_model = "#{car_brand} #{model}"
   car_image = "https://cdn.imagin.studio/getimage?customer=img&make=#{car_brand}&modelFamily=#{model}&angle=1&paintId=2t"
   mileage = rand(1..100000)
@@ -24,6 +26,7 @@ end
     car_image: car_image,
     mileage: mileage,
     city: city,
+    rating: rating,
     price_per_day: price_per_day,
     user: User.all.sample
   )
@@ -37,6 +40,8 @@ end
   start_date = Faker::Time.between(from: DateTime.now, to: '2023-07-06')
   return_date = Faker::Time.between(from: start_date, to: '2023-07-06')
   price_per_day = Car.all.sample.price_per_day
+  car_rating = rand(3.0..5.0).round(1)
+  user_rating = rand(3.0..5.0).round(1)
   days = ((return_date - start_date) / 1.day).ceil
   total_price = days * price_per_day
   Booking.create!(
@@ -48,6 +53,8 @@ end
     completed: false,
     approved: false,
     cancelled: false,
-    days: days
+    days: days,
+    car_rating: car_rating,
+    user_rating: user_rating
   )
 end
