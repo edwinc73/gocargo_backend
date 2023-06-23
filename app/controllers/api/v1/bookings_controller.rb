@@ -18,11 +18,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
     @car = Car.find(params[:car_id])
     @booking = Booking.new(booking_params)
     @booking.car = @car
-<<<<<<< HEAD
-    @booking.user = User.last
-=======
     @booking.user = @current_user
->>>>>>> master
     if @booking.save
       redirect_to api_v1_booking_path(@booking), status: 303
     else
@@ -41,11 +37,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
   private
 
   def booking_params
-<<<<<<< HEAD
-  params.require(:booking).permit(:approved, :completed, :total_price, :start_date, :return_date, :user_rating, :car_rating)
-=======
     params.require(:booking).permit(:approved, :completed, :start_date, :return_date, :total_price, :user_rating, :car_rating)
->>>>>>> master
   end
 
   def set_booking
