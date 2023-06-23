@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
   def profile
-    @user = User.last #need to update this code to the other users.
+    @user = @current_user #need to update this code to the other users.
 
     @favourite_cars = []
     favourite_cars_list = @user.favourite_cars
