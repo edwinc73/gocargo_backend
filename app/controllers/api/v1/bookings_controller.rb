@@ -1,6 +1,13 @@
 class Api::V1::BookingsController < Api::V1::BaseController
   before_action :set_booking, only: %i[show update]
 
+  def index
+    @user = @current_user
+    # find the user
+    @booking_renter = @user.bookings
+    @booking_owner = Booking.all.select { |b| b.car.user == @user }
+  end
+
   def show
     @renter = User.find(@booking.user_id)
     @car = Car.find(@booking.car_id)
@@ -11,9 +18,13 @@ class Api::V1::BookingsController < Api::V1::BaseController
     @car = Car.find(params[:car_id])
     @booking = Booking.new(booking_params)
     @booking.car = @car
+<<<<<<< HEAD
     @booking.user = User.last
+=======
+    @booking.user = @current_user
+>>>>>>> master
     if @booking.save
-      render :show
+      redirect_to api_v1_booking_path(@booking), status: 303
     else
       render_error
     end
@@ -30,7 +41,11 @@ class Api::V1::BookingsController < Api::V1::BaseController
   private
 
   def booking_params
+<<<<<<< HEAD
   params.require(:booking).permit(:approved, :completed, :total_price, :start_date, :return_date, :user_rating, :car_rating)
+=======
+    params.require(:booking).permit(:approved, :completed, :start_date, :return_date, :total_price, :user_rating, :car_rating)
+>>>>>>> master
   end
 
   def set_booking

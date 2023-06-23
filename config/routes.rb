@@ -6,12 +6,15 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      post 'login', to: 'user_sessions#login', as: :login
+      post 'login', to: 'sessions#login', as: :login
+      resources :events, only: :index
       get "users/profile", to: "users#profile"
       resources :cars, only: %i[show create index] do
-        post "bookings", to: "bookings#create"
+        member do
+          post "bookings", to: "bookings#create"
+        end
       end
-      resources :bookings, only: %i[show update]
+      resources :bookings, only: %i[index show update]
     end
   end
 end
