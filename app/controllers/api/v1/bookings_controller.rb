@@ -2,7 +2,10 @@ class Api::V1::BookingsController < Api::V1::BaseController
   before_action :set_booking, only: %i[show update]
 
   def index
-    @bookings = Booking.all
+    @user = User.last
+    # find the user
+    @booking_renter = @user.bookings
+    @booking_owner = Booking.all.select { |b| b.car.user == @user }
   end
 
   def show
