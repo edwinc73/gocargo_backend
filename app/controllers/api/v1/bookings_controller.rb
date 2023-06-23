@@ -20,7 +20,8 @@ class Api::V1::BookingsController < Api::V1::BaseController
     @booking.car = @car
     @booking.user = @current_user
     if @booking.save
-      redirect_to api_v1_booking_path(@booking), status: 303
+      render json: { msg: 'booked' }
+      # redirect_to api_v1_booking_path(@booking), status: 303
     else
       render_error
     end

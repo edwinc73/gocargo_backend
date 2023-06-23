@@ -10,9 +10,10 @@ Rails.application.routes.draw do
       resources :events, only: :index
       get "users/profile", to: "users#profile"
       resources :cars, only: %i[show create index] do
-        member do
-          post "bookings", to: "bookings#create"
-        end
+        resources :bookings, only: :create
+        # member do
+        #   post "bookings", to: "bookings#create"
+        # end
       end
       resources :bookings, only: %i[index show update]
     end
