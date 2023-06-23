@@ -58,3 +58,7 @@ end
     user_rating: user_rating
   )
 end
+
+# for testing login
+Event.create(name: 'JWT workshop', description: 'so much fun!')
+Event.create(name: 'meditation', description: 'gain inner peace namaste')
