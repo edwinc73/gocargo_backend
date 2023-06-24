@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :events, only: :index
       post 'login', to: 'sessions#login', as: :login
+      resources :events, only: :index
       get "users/profile", to: "users#profile"
       resources :cars, only: %i[show create index] do
         member do

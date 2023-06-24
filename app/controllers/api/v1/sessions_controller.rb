@@ -29,5 +29,4 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def jwt_encode(payload)
     JWT.encode payload, HMAC_SECRET, 'HS256'
   end
-
 end
