@@ -1,6 +1,5 @@
 class Api::V1::SessionsController < Api::V1::BaseController
-  skip_before_action :verify_request, only: [:login]
-
+  skip_before_action :verify_request
   def login
     user = find_user
     token = jwt_encode(user_id: user.id)
@@ -29,4 +28,5 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def jwt_encode(payload)
     JWT.encode payload, HMAC_SECRET, 'HS256'
   end
+
 end
