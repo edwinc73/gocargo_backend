@@ -13,7 +13,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
 
   def find_user
     open_id = fetch_wx_open_id(params[:code])["openid"]
-    User.find_or_create_by(open_id: open_id)
+    User.find_or_create_by!(open_id: open_id)
   end
 
   def fetch_wx_open_id(code)
@@ -21,6 +21,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
     app_secret = Rails.application.credentials.dig(:wechat, :app_secret)
     url = "https://api.weixin.qq.com/sns/jscode2session?appid=#{app_id}&secret=#{app_secret}&js_code=#{code}&grant_type=authorization_code"
     response = RestClient.get(url)
+    puts "response #{response}"
     JSON.parse(response.body)
   end
 

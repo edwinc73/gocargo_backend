@@ -15,7 +15,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
   end
 
   def create
-    @car = Car.find(params[:id])
+    @car = Car.find(params[:car_id])
     @booking = Booking.new(booking_params)
     @booking.car = @car
     @booking.user = @current_user
@@ -30,7 +30,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
     if @booking.update(booking_params)
       render :show
     else
-      render_error
+    render_error
     end
   end
 
@@ -42,5 +42,10 @@ class Api::V1::BookingsController < Api::V1::BaseController
 
   def set_booking
     @booking = Booking.find(params[:id])
+  end
+
+  def render_error
+    render json: { errors: @booking.errors.full_messages },
+      status: :unprocessable_entity
   end
 end
