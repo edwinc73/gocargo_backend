@@ -2,7 +2,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
   before_action :set_booking, only: %i[show update]
 
   def index
-    @user = User.last
+    @user = @current_user
     # find the user
     @booking_renter = @user.bookings
     @booking_owner = Booking.all.select { |b| b.car.user == @user }
@@ -18,7 +18,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
     @car = Car.find(params[:id])
     @booking = Booking.new(booking_params)
     @booking.car = @car
-    @booking.user = User.last
+    @booking.user = @current_user
     if @booking.save
       redirect_to api_v1_booking_path(@booking), status: 303
     else
