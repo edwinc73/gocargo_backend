@@ -1,4 +1,6 @@
 json.booking do
+  json.date  @booking.start_date.strftime("/%y/%m/%d")
+  json.date  @booking.return_date.strftime("/%y/%m/%d")
   json.extract! @booking, :approved, :completed, :start_date, :return_date, :total_price, :user_rating, :car_rating, :id
 end
 
