@@ -29,7 +29,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
 
   def update
     if @booking.update(booking_params)
-      render :show
+      render json: { msg: 'booking has changed' }
     else
     render_error
     end
@@ -38,7 +38,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
   private
 
   def booking_params
-    params.require(:booking).permit(:approved, :completed, :start_date, :return_date, :total_price, :user_rating, :car_rating)
+    params.require(:booking).permit(:approved, :cancelled, :completed, :start_date, :return_date, :total_price, :user_rating, :car_rating)
   end
 
   def set_booking
