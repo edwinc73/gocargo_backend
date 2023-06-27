@@ -12,14 +12,16 @@ class Api::V1::CarsController < Api::V1::BaseController
     @car = Car.new(car_params)
     @car.user = User.last
     if @car.save
-      render :upload_img
+      redirect_to api_v1_car_path(@car), status: 303
     else
       render_error
     end
   end
 
   def upload_img
-
+    @car = Car.last
+    @car.photo.attach(img_params)
+    @car.save
   end
 
   private
@@ -30,5 +32,9 @@ class Api::V1::CarsController < Api::V1::BaseController
 
   def set_car
     @car = Car.find(params[:id])
+  end
+
+  def img_params
+    params.require(:car).permit(photos: [])
   end
 end
