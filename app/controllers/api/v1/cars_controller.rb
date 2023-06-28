@@ -18,23 +18,13 @@ class Api::V1::CarsController < Api::V1::BaseController
     end
   end
 
-  def upload_img
-    @car = Car.last
-    @car.photo.attach(img_params)
-    @car.save
-  end
-
   private
 
   def car_params
-    params.require(:car).permit(:car_model, :mileage, :car_image, :city, :price_per_day)
+    params.require(:car).permit(:car_model, :mileage, :car_image, :city, :price_per_day, :car_brand, :photos)
   end
 
   def set_car
     @car = Car.find(params[:id])
-  end
-
-  def img_params
-    params.require(:car).permit(photos: [])
   end
 end
