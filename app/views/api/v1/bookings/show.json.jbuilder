@@ -1,11 +1,11 @@
 json.booking do
-  json.start_date  @booking.start_date.strftime("%y-%m-%d")
-  json.return_date  @booking.return_date.strftime("%y-%m-%d")
+  json.start_date  @booking.start_date.strftime("%Y-%m-%d")
+  json.return_date  @booking.return_date.strftime("%Y-%m-%d")
   json.extract! @booking, :approved, :cancelled, :completed, :total_price, :user_rating, :car_rating, :id
 end
 
 json.car do
-  json.extract! @car, :car_model, :mileage, :car_image, :city, :price_per_day, :rating, :id
+  json.extract! @car, :car_model, :car_brand, :mileage, :car_image, :city, :price_per_day, :rating, :id
 end
 
 json.renter do
