@@ -31,10 +31,6 @@ class Api::V1::CarsController < Api::V1::BaseController
   #   params.require(:car).permit(:photos)
   # end
 
-  # def car_params
-  #   params.require(:photod).permit(:car_model, :mileage, :car_image, :city, :price_per_day, :car_brand, :photos, photos: [])
-  # end
-
   def car_params
     params.require(:car).permit(:car_model, :mileage, :car_image, :city, :price_per_day, :car_brand, :photos)
   end
