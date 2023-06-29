@@ -15,6 +15,12 @@ class Api::V1::FavouriteCarsController < ApplicationController
     user = @current_user.id
     @favourite_car = FavouriteCar.where(user_id: user, car_id: car)
     @favourite_car.destroy
-    head :no_content
   end
+
+  private
+  def render_error
+    render json: { errors: @favourite_car.errors.full_messages },
+      status: :unprocessable_entity
+  end
+
 end
