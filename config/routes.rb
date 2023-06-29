@@ -11,9 +11,7 @@ Rails.application.routes.draw do
       get "users/profile", to: "users#profile"
       resources :cars, only: %i[show create index] do
         resources :bookings, only: :create
-        # member do
-        #   post "bookings", to: "bookings#create"
-        # end
+        post 'upload_img', to: "cars#upload_img"
       end
       resources :bookings, only: %i[index show update]
     end
