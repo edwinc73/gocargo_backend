@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       post 'login', to: 'sessions#login', as: :login
-      resources :events, only: :index
       get "users/profile", to: "users#profile"
       resources :cars, only: %i[show create index] do
         resources :bookings, only: :create
