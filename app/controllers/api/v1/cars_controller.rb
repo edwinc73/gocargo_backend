@@ -21,7 +21,7 @@ class Api::V1::CarsController < Api::V1::BaseController
   def upload_img
     @car = Car.last
     photo = params[:photos]
-    @car.photos.attach(io:photo.tempfile, filename:photo.original_filename)
+    @car.photos.attach(io: photo.tempfile, filename: photo.original_filename)
     @car.save!
   end
 
