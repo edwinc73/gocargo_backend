@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_01_034414) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_01_063253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,7 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_034414) do
     t.string "car_image"
     t.string "city"
     t.float "price_per_day"
-    t.float "rating"
+    t.float "rating", default: 3.0
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_034414) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.float "rating"
+    t.float "rating", default: 3.0
     t.string "avatar_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
