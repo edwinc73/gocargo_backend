@@ -7,3 +7,5 @@ json.photos @car.photos.map {|photo| photo.url}
 json.owner do
   json.extract! @owner, :username, :avatar_image, :rating, :id
 end
+
+json.favourited @favourited
