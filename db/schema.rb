@@ -87,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_125125) do
     t.bigint "car_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_favourited", default: false
     t.index ["car_id"], name: "index_favourite_cars_on_car_id"
     t.index ["user_id"], name: "index_favourite_cars_on_user_id"
   end

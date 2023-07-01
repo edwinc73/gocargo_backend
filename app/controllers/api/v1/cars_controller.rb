@@ -6,6 +6,10 @@ class Api::V1::CarsController < Api::V1::BaseController
 
   def show
     @owner = User.find(@car.user_id)
+    @favourited = false
+    if @current_user.favourite_cars.where(car_id:@car).any?
+      @favourited = @current_user.favourite_cars.where(car_id:@car)[0]
+    end
   end
 
   def create

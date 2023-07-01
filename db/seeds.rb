@@ -122,3 +122,5 @@ end
     user_rating: user_rating
   )
 end
+
+puts "finished seeding"
