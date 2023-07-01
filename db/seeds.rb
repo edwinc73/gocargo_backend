@@ -76,6 +76,7 @@ premium_car = [ferrari, porsche, mclaren, aston_martin, koenigsegg, lamborghini,
 100.times do
   car = premium_car.sample
   car_brand = car[:car_brand]
+  description = car[:description]
   model = car[:model]
   rating = rand(1.0..5.0).round(1)
   car_image = car[:car_image]
@@ -88,6 +89,7 @@ premium_car = [ferrari, porsche, mclaren, aston_martin, koenigsegg, lamborghini,
     car_image: car_image,
     mileage: mileage,
     city: city,
+    description: description,
     rating: rating,
     price_per_day: price_per_day,
     user: User.all.sample
