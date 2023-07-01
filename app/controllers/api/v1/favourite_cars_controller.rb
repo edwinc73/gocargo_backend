@@ -2,7 +2,7 @@ class Api::V1::FavouriteCarsController < Api::V1::BaseController
   def create
     car = params[:car_id]
     user = @current_user.id
-    @favourite_car = FavouriteCar.new(user_id: user, car_id: car)
+    @favourite_car = FavouriteCar.new(favourite_car_params)
     if @favourite_car.save
       render json: { msg: 'add favourite car' }
     else
